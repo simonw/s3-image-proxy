@@ -1,0 +1,5 @@
+starlette
+pyheif
+httpx
+Pillow
+boto3
