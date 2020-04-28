@@ -16,11 +16,11 @@ for ORIENTATION_TAG in ExifTags.TAGS.keys():
 
 read_client = boto3.client(
     "s3",
-    aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
-    aws_secret_access_key=os.environ["AWS_SECRET_ACCESS_KEY"],
+    aws_access_key_id=os.environ["S3_AWS_ACCESS_KEY_ID"],
+    aws_secret_access_key=os.environ["S3_AWS_SECRET_ACCESS_KEY"],
 )
 
-AWS_S3_BUCKET = os.environ["AWS_S3_BUCKET"]
+AWS_S3_BUCKET = os.environ["S3_BUCKET"]
 
 
 def url_for_image(sha256, ext):
