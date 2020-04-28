@@ -97,11 +97,17 @@ async def image(request):
     if q and q.isdigit() and 1 <= int(q) <= 100:
         quality = int(q)
 
-    # Output as JPEG
-    jpeg = io.BytesIO()
-    image.save(jpeg, "JPEG", quality=quality)
+    # Output as JPEG or PNG
+    output_image = io.BytesIO()
+    image_type = "JPEG"
+    kwargs = {"quality": quality}
+    if image.format == "PNG":
+        image_type = "PNG"
+        kwargs = {}
+
+    image.save(output_image, image_type, **kwargs)
     return Response(
-        jpeg.getvalue(),
+        output_image.getvalue(),
         media_type="image/jpeg",
         headers={"cache-control": "s-maxage={}, public".format(365 * 24 * 60 * 60)},
     )
