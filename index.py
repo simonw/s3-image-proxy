@@ -38,6 +38,7 @@ async def image(request):
     key = request.path_params["key"]
     sha256, ext = key.split(".")
     url = url_for_image(sha256, ext)
+
     # Fetch original
     async with httpx.AsyncClient(verify=False) as client:
         image_response = await client.get(url)
@@ -96,6 +97,7 @@ async def image(request):
     if q and q.isdigit() and 1 <= int(q) <= 100:
         quality = int(q)
 
+    # Output as JPEG
     jpeg = io.BytesIO()
     image.save(jpeg, "JPEG", quality=quality)
     return Response(
