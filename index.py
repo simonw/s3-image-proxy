@@ -120,7 +120,7 @@ def original(request):
 
 
 app = Starlette(
-    debug=True,
+    debug=bool(os.environ.get("DEBUG")),
     routes=[
         Route("/", homepage),
         Route("/i/{key}", image),
