@@ -7,6 +7,7 @@ import pyheif
 import io
 import os
 import boto3
+import secrets
 
 
 for ORIENTATION_TAG in ExifTags.TAGS.keys():
@@ -115,6 +116,12 @@ async def image(request):
 
 def original(request):
     key = request.path_params["key"]
+    token = request.query_params.get("token") or ""
+    if not secrets.compare_digest(token, os.environ["ORIGINAL_TOKEN"]):
+        return JSONResponse(
+            {"error": "?token= must match ORIGINAL_TOKEN environment variable"},
+            status_code=403,
+        )
     sha256, ext = key.split(".")
     return RedirectResponse(url_for_image(sha256, ext), status_code=302)
 
