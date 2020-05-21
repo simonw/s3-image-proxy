@@ -2,6 +2,10 @@
 
 Tiny [Starlette](https://www.starlette.io/) application for retrieving image files from a private S3 bucket, resizing them based on querystring parameters and serving them with cache headers so the resized images can be cached by a CDN.
 
+## Demo
+
+You can see a demo of this proxy in action serving images [on this page](https://dogsheep-photos.dogsheep.net/public/photos_with_apple_metadata).
+
 ## Configuration
 
 The following environment variables are required:
