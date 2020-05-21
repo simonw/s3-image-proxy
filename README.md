@@ -12,6 +12,8 @@ The following environment variables are required:
 
 Here [are some notes](https://github.com/dogsheep/dogsheep-photos/issues/4) on creating an S3 bucket with the right credentials.
 
+If you want to be able to access the original image files, set a `ORIGINAL_TOKEN` with a secret token that you plan to use to access the originals.
+
 ## Deployment
 
 You can deploy this tool directly to [Vercel](https://vercel.com/). You'll need to set the necessary environment variables.
@@ -47,3 +49,7 @@ To resize the image, pass ?w= or ?h= arguments:
 Use `?bw=1` to convert the image to black and white.
 
 If you are serving JPEGs you can control the quality using `?q=` - e.g. `?q=25` for a lower quality (but faster loading) image.
+
+To access the original image file, use this URL:
+
+    http://localhost:8000/o/name-of-file.jpeg?token=YOUR_SECRET_TOKEN
